@@ -4,13 +4,25 @@ services:
     container_name: app-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: app_db
-      POSTGRES_USER: app
-      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: innogram
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  api:
+    image: innogram-api
+    container_name: app-api
+    restart: unless-stopped
+    env_file:
+      - apps/api/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
 
 volumes:
   pgdata:
