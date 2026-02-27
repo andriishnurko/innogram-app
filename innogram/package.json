@@ -1,0 +1,52 @@
+{
+  "name": "innogram",
+  "version": "1.0.0",
+  "description": "Innogram - Social Media Application",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "db:migrate": "turbo run db:migrate",
+    "db:seed": "turbo run db:seed",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate apps/auth_microservice/src/db/migrations/Init -d apps/auth_microservice/src/db/data-source.ts",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d apps/auth_microservice/src/db/data-source.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d apps/auth_microservice/src/db/data-source.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "turbo": "^1.10.0",
+    "typeorm": "^0.3.28",
+    "typeorm-ts-node-commonjs": "^0.3.20",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.14",
+    "@nestjs/config": "^4.0.3",
+    "@nestjs/core": "^11.1.14",
+    "@nestjs/platform-express": "^11.1.14",
+    "@nestjs/typeorm": "^11.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.3",
+    "dotenv": "^17.3.1",
+    "eslint-plugin-import": "2.29.1",
+    "mysql2": "^3.16.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  }
+}
